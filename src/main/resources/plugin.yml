@@ -2,3 +2,6 @@ name: paperMC-learning
 version: '1.0.0'
 main: m1jawa.paperMCLearning.PaperMCLearning
 api-version: '1.21'
+commands:
+  roll:
+    default-permission: notop
