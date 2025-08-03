@@ -5,3 +5,5 @@ api-version: '1.21'
 commands:
   roll:
     default-permission: notop
+  color-msg:
+    default-permission: notop
