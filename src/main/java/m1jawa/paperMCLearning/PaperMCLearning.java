@@ -1,5 +1,6 @@
 package m1jawa.paperMCLearning;
 
+import m1jawa.paperMCLearning.Listeners.BlockBreakingListener;
 import m1jawa.paperMCLearning.Listeners.JoinQuitListener;
 import m1jawa.paperMCLearning.commands.ColorMsgCommand;
 import m1jawa.paperMCLearning.commands.RollCommand;
@@ -21,5 +22,6 @@ public final class PaperMCLearning extends JavaPlugin {
 
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents((Listener) new JoinQuitListener(), (Plugin) this);
+        pluginManager.registerEvents((Listener) new BlockBreakingListener(), (Plugin) this);
     }
 }
