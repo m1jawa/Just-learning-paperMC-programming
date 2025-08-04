@@ -18,6 +18,7 @@ public final class PaperMCLearning extends JavaPlugin {
         getCommand("roll").setExecutor(new RollCommand());
         getCommand("color-msg").setExecutor(new ColorMsgCommand());
 
+
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents((Listener) new JoinQuitListener(), (Plugin) this);
     }
