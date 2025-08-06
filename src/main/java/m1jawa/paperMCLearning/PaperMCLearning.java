@@ -4,14 +4,11 @@ import m1jawa.paperMCLearning.Listeners.BlockBreakingListener;
 import m1jawa.paperMCLearning.Listeners.JoinQuitListener;
 import m1jawa.paperMCLearning.Listeners.PlayerRightClickListener;
 import m1jawa.paperMCLearning.commands.ColorMsgCommand;
+import m1jawa.paperMCLearning.commands.GetItemCommand;
 import m1jawa.paperMCLearning.commands.RollCommand;
 import org.bukkit.Bukkit;
-import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.awt.*;
 
 public final class PaperMCLearning extends JavaPlugin {
 
@@ -19,6 +16,7 @@ public final class PaperMCLearning extends JavaPlugin {
     public void onEnable() {
         getCommand("roll").setExecutor(new RollCommand());
         getCommand("color-msg").setExecutor(new ColorMsgCommand());
+        getCommand("get-item").setExecutor(new GetItemCommand());
 
 
         PluginManager pluginManager = Bukkit.getPluginManager();

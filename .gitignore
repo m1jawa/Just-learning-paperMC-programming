@@ -5,6 +5,8 @@
 *.ipr
 *.iws
 
+src/main/java/m1jawa/paperMCLearning/PluginItems.java
+
 # IntelliJ
 out/
 
