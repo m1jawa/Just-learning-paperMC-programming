@@ -6,13 +6,17 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class PluginItems {
     public static ItemStack MagicWand;
+    public static ItemStack CommonApple;
 
     public static void init() {
         MagicWand = MagicWand();
+        CommonApple = CommonApple();
     }
 
     private static ItemStack MagicWand() {
@@ -24,6 +28,21 @@ public class PluginItems {
         meta.addEnchant(Enchantment.PUNCH, 2, false);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
+    private static ItemStack CommonApple() {
+        ItemStack item = new ItemStack(Material.GOLDEN_APPLE);
+        ItemMeta meta = item.getItemMeta();
+        List<String> lore = new ArrayList<>();
+
+        meta.setDisplayName("Common Apple");
+        lore.add("Just an apple");
+        lore.add("Common apple...");
+
+        meta.setLore(lore);
         item.setItemMeta(meta);
 
         return item;
