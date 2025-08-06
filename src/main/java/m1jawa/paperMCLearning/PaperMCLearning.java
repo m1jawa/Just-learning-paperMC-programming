@@ -23,5 +23,7 @@ public final class PaperMCLearning extends JavaPlugin {
         pluginManager.registerEvents(new JoinQuitListener(), this);
         pluginManager.registerEvents(new BlockBreakingListener(), this);
         pluginManager.registerEvents(new PlayerRightClickListener(), this);
+
+        PluginItems.init();
     }
 }

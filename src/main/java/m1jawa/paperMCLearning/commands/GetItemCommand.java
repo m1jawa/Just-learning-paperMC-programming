@@ -1,5 +1,6 @@
 package m1jawa.paperMCLearning.commands;
 
+import m1jawa.paperMCLearning.PluginItems;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,20 +20,8 @@ public class GetItemCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] strings) {
         Player player = (Player) commandSender;
-        ItemStack item = new ItemStack(Material.DIAMOND);
-        ItemMeta meta = item.getItemMeta();
-        List<String> lore = new ArrayList<>();
 
-        meta.setDisplayName("Dermo");
-        lore.add("String1");
-        lore.add("String2");
-        meta.addEnchant(Enchantment.PUNCH, 2, false);
-        meta.setLore(lore);
-
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-
-        item.setItemMeta(meta);
-        player.getInventory().addItem(item);
+        player.getInventory().addItem(PluginItems.MagicWand);
 
         return false;
     }
