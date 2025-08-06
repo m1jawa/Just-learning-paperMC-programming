@@ -1,5 +1,6 @@
 package m1jawa.paperMCLearning.Listeners;
 
+import m1jawa.paperMCLearning.PluginItems;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
@@ -12,7 +13,7 @@ public class PlayerRightClickListener implements Listener {
 
         if (e.getAction().isLeftClick()) return;
         if (e.getItem() == null) return;
-        if (!e.getItem().getType().equals(Material.STICK)) return;
+        if (!e.getItem().isSimilar(PluginItems.MagicWand)) return;
 
         Block block = e.getClickedBlock();
 
