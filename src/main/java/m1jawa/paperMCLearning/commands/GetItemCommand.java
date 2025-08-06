@@ -1,10 +1,12 @@
 package m1jawa.paperMCLearning.commands;
 
 import m1jawa.paperMCLearning.PluginItems;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
 public class GetItemCommand implements CommandExecutor {
@@ -13,8 +15,12 @@ public class GetItemCommand implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] strings) {
         Player player = (Player) commandSender;
 
-        player.getInventory().addItem(PluginItems.MagicWand);
-        player.getInventory().addItem(PluginItems.CommonApple);
+        Inventory menu = Bukkit.createInventory(null, 9);
+
+        menu.setItem(3, PluginItems.MagicWand);
+        menu.setItem(5, PluginItems.CommonApple);
+
+        player.openInventory(menu);
 
         return false;
     }
