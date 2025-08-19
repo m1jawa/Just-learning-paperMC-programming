@@ -15,7 +15,7 @@ public class GetItemCommand implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] strings) {
         Player player = (Player) commandSender;
 
-        Inventory menu = Bukkit.createInventory(null, 9);
+        Inventory menu = Bukkit.createInventory(null, 9, "Shop");
 
         menu.setItem(3, PluginItems.MagicWand);
         menu.setItem(5, PluginItems.CommonApple);

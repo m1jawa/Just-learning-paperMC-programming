@@ -12,8 +12,11 @@ import java.util.EventListener;
 public class InventoryClickListener implements Listener {
     @EventHandler
     private void PlayerClickInventory(InventoryClickEvent e) {
+
         Player player = (Player) e.getWhoClicked();
         ItemStack clickedItem = e.getCurrentItem();
+
+        if (!e.getView().getTitle().equals("Shop")) return;
 
         if (e.getCurrentItem() == null) return;
         if (clickedItem.isSimilar(PluginItems.MagicWand)) {
