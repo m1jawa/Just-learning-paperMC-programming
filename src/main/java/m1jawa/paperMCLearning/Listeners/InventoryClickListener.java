@@ -1,5 +1,6 @@
 package m1jawa.paperMCLearning.Listeners;
 
+import m1jawa.paperMCLearning.MenuHolder;
 import m1jawa.paperMCLearning.PluginItems;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -7,7 +8,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.EventListener;
 
 public class InventoryClickListener implements Listener {
     @EventHandler
@@ -16,7 +16,9 @@ public class InventoryClickListener implements Listener {
         Player player = (Player) e.getWhoClicked();
         ItemStack clickedItem = e.getCurrentItem();
 
-        if (!e.getView().getTitle().equals("Shop")) return;
+        if (!(e.getClickedInventory().getHolder() instanceof MenuHolder)) return;
+        MenuHolder menuHolder = (MenuHolder) e.getClickedInventory().getHolder();
+        if(menuHolder.GetMenuId() != 0) return;
 
         if (e.getCurrentItem() == null) return;
         if (clickedItem.isSimilar(PluginItems.MagicWand)) {
