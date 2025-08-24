@@ -16,17 +16,19 @@ public class InventoryClickListener implements Listener {
         Player player = (Player) e.getWhoClicked();
         ItemStack clickedItem = e.getCurrentItem();
 
-        if (!(e.getClickedInventory().getHolder() instanceof MenuHolder)) return;
-        MenuHolder menuHolder = (MenuHolder) e.getClickedInventory().getHolder();
-        if(menuHolder.GetMenuId() != 0) return;
+        if (e.getInventory().getHolder() instanceof MenuHolder) {
+            if (e.getClickedInventory().getHolder() instanceof Player) e.setCancelled(true);
 
-        if (e.getCurrentItem() == null) return;
-        if (clickedItem.isSimilar(PluginItems.MagicWand)) {
-            player.getInventory().addItem(PluginItems.MagicWand);
-        } else if (clickedItem.isSimilar(PluginItems.CommonApple)) {
-            player.getInventory().addItem(PluginItems.CommonApple);
+            MenuHolder menuHolder = (MenuHolder) e.getClickedInventory().getHolder();
+            if(menuHolder.GetMenuId() == 0) {
+                if (e.getCurrentItem() == null) return;
+                if (clickedItem.isSimilar(PluginItems.MagicWand)) {
+                    player.getInventory().addItem(PluginItems.MagicWand);
+                } else if (clickedItem.isSimilar(PluginItems.CommonApple)) {
+                    player.getInventory().addItem(PluginItems.CommonApple);
+                }
+            }
+            e.setCancelled(true);
         }
-
-        e.setCancelled(true);
     }
 }
