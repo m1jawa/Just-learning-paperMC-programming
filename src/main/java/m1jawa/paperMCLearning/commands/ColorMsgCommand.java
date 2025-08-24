@@ -1,65 +1,60 @@
 package m1jawa.paperMCLearning.commands;
 
-import com.mojang.brigadier.Message;
+import io.papermc.paper.command.brigadier.BasicCommand;
+import io.papermc.paper.command.brigadier.CommandSourceStack;
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ColorMsgCommand implements CommandExecutor, TabCompleter {
+public class ColorMsgCommand implements BasicCommand {
     @Override
-    public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] strings) {
-        Player player = (Player) commandSender;
-        if (strings.length < 2) {
-            player.sendMessage("§cYou didn't write all arguments!");
-            return false;
+    public void execute(CommandSourceStack source, String[] args) {
+        CommandSender sender = source.getSender();
+        if (sender instanceof Player player) {
+            if (args.length < 3) {
+                player.sendMessage("§cYou didn't write all arguments!");
+            }
+            Player target = Bukkit.getPlayer(args[0]);
+            String message = "";
+
+            if (target == null) {
+                player.sendMessage("§cPlayer is not online!");
+            }
+
+            if (args.length >= 3 && target != null) {
+                if (args[1].equals("red")) {
+                    message = "§4";
+                } else if (args[1].equals("blue")) {
+                    message = "§1";
+                } else if (args[1].equals("green")) {
+                    message = "§2";
+                }
+
+                for (int i = 2; i < args.length; i++) {
+                    message += args[i] + " ";
+                }
+
+                player.sendMessage("You wrote to " + target.getName() + ": " + message);
+                target.sendMessage(player.getName() + " wrote you: " + message);
+            }
         }
-
-        Player target = Bukkit.getPlayer(strings[0]);
-
-        if (target == null) {
-            player.sendMessage("§cPlayer is not online!");
-            return false;
-        }
-
-        String message = "";
-
-        if (strings[1].equals("red")) {
-            message = "§4";
-        } else if (strings[1].equals("blue")) {
-            message = "§1";
-        } else if (strings[1].equals("green")) {
-            message = "§2";
-        }
-
-        for ( int i = 2; i < strings.length; i ++) {
-            message += strings[i] + " ";
-        }
-
-        player.sendMessage("You wrote to " + target.getName() + ": " + message);
-        target.sendMessage(player.getName() + " wrote you: " + message);
-
-        return false;
     }
 
     @Override
-    public @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] strings) {
+    public @Nullable List<String> suggest(CommandSourceStack source, String[] args) {
         List<String> tab = new ArrayList<>();
 
-        if (strings.length == 1) {
+        if (args.length == 1) {
             for (Player players : Bukkit.getOnlinePlayers()) {
                 tab.add(players.getName());
             }
         }
 
-        if (strings.length == 2) {
+        if (args.length == 2) {
             tab.add("red");
             tab.add("blue");
             tab.add("green");

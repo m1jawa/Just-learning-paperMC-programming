@@ -1,5 +1,6 @@
 package m1jawa.paperMCLearning;
 
+import io.papermc.paper.command.brigadier.BasicCommand;
 import m1jawa.paperMCLearning.Listeners.BlockBreakingListener;
 import m1jawa.paperMCLearning.Listeners.InventoryClickListener;
 import m1jawa.paperMCLearning.Listeners.JoinQuitListener;
@@ -16,11 +17,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class PaperMCLearning extends JavaPlugin {
 
+
+
     @Override
     public void onEnable() {
-        getCommand("roll").setExecutor(new RollCommand());
-        getCommand("color-msg").setExecutor(new ColorMsgCommand());
-        getCommand("get-item").setExecutor(new GetItemCommand());
+
+        BasicCommand getItemCommand = new GetItemCommand();
+        BasicCommand colorMsgCommand = new ColorMsgCommand();
+        BasicCommand rollCommand = new RollCommand();
+
+        registerCommand("get-item", getItemCommand);
+        registerCommand("color-msg", colorMsgCommand);
+        registerCommand("roll", rollCommand);
 
 
         PluginManager pluginManager = Bukkit.getPluginManager();

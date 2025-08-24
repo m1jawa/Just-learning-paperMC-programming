@@ -1,28 +1,30 @@
 package m1jawa.paperMCLearning.commands;
 
+import io.papermc.paper.command.brigadier.BasicCommand;
+import io.papermc.paper.command.brigadier.CommandSourceStack;
 import m1jawa.paperMCLearning.MenuHolder;
 import m1jawa.paperMCLearning.PluginItems;
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
+
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.jetbrains.annotations.NotNull;
 
-public class GetItemCommand implements CommandExecutor {
+
+public class GetItemCommand implements BasicCommand {
 
     @Override
-    public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] strings) {
-        Player player = (Player) commandSender;
+    public void execute(CommandSourceStack source, String[] args) {
 
-        Inventory menu = Bukkit.createInventory(new MenuHolder(0), 9, "Shop");
+        CommandSender sender = source.getSender();
+        if (sender instanceof Player player)
+        {
+            Inventory menu = Bukkit.createInventory(new MenuHolder(0), 9, "Shop");
 
-        menu.setItem(3, PluginItems.MagicWand);
-        menu.setItem(5, PluginItems.CommonApple);
+            menu.setItem(3, PluginItems.MagicWand);
+            menu.setItem(5, PluginItems.CommonApple);
 
-        player.openInventory(menu);
-
-        return false;
+            player.openInventory(menu);
+        }
     }
 }

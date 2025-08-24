@@ -7,5 +7,3 @@ commands:
     default-permission: notop
   color-msg:
     default-permission: notop
-  get-item:
-    default-permission: notop
