@@ -13,10 +13,12 @@ import java.util.List;
 public class PluginItems {
     public static ItemStack MagicWand;
     public static ItemStack CommonApple;
+    public static ItemStack MobSpawn;
 
     public static void init() {
         MagicWand = MagicWand();
         CommonApple = CommonApple();
+        MobSpawn = MobSpawn();
     }
 
     private static ItemStack MagicWand() {
@@ -43,6 +45,16 @@ public class PluginItems {
         lore.add("Common apple...");
 
         meta.setLore(lore);
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
+    private static ItemStack MobSpawn() {
+        ItemStack item = new ItemStack(Material.BONE);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName("Summon mob");
+
         item.setItemMeta(meta);
 
         return item;

@@ -2,6 +2,9 @@ package m1jawa.paperMCLearning.Listeners;
 
 import m1jawa.paperMCLearning.MenuHolder;
 import m1jawa.paperMCLearning.PluginItems;
+import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,6 +17,7 @@ public class InventoryClickListener implements Listener {
     private void PlayerClickInventory(InventoryClickEvent e) {
 
         Player player = (Player) e.getWhoClicked();
+        World world = player.getWorld();
         ItemStack clickedItem = e.getCurrentItem();
 
         if (e.getInventory().getHolder() instanceof MenuHolder) {
@@ -26,6 +30,10 @@ public class InventoryClickListener implements Listener {
                     player.getInventory().addItem(PluginItems.MagicWand);
                 } else if (clickedItem.isSimilar(PluginItems.CommonApple)) {
                     player.getInventory().addItem(PluginItems.CommonApple);
+                } else if (clickedItem.isSimilar(PluginItems.MobSpawn)) {
+                    Location location = player.getEyeLocation().add(player.getLocation().getDirection().multiply(5));
+
+                    world.spawnEntity(location, EntityType.ARMOR_STAND);
                 }
             }
             e.setCancelled(true);

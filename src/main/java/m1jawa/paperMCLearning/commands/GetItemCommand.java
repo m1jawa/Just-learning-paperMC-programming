@@ -22,6 +22,7 @@ public class GetItemCommand implements BasicCommand {
             Inventory menu = Bukkit.createInventory(new MenuHolder(0), 9, "Shop");
 
             menu.setItem(3, PluginItems.MagicWand);
+            menu.setItem(4, PluginItems.MobSpawn);
             menu.setItem(5, PluginItems.CommonApple);
 
             player.openInventory(menu);
