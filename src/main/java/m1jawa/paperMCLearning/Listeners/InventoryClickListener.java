@@ -3,12 +3,16 @@ package m1jawa.paperMCLearning.Listeners;
 import m1jawa.paperMCLearning.MenuHolder;
 import m1jawa.paperMCLearning.PluginItems;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.spawner.SpawnerEntry;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
 
@@ -33,7 +37,15 @@ public class InventoryClickListener implements Listener {
                 } else if (clickedItem.isSimilar(PluginItems.MobSpawn)) {
                     Location location = player.getEyeLocation().add(player.getLocation().getDirection().multiply(5));
 
-                    world.spawnEntity(location, EntityType.ARMOR_STAND);
+                    ArmorStand armorStand = (ArmorStand) world.spawnEntity(location, EntityType.ARMOR_STAND);
+                    armorStand.setItem(EquipmentSlot.FEET, new ItemStack(Material.IRON_BOOTS));
+                    armorStand.getEquipment().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
+
+                    armorStand.setArms(true);
+                    armorStand.setItem(EquipmentSlot.HAND, new ItemStack(PluginItems.MagicWand));
+
+                    armorStand.setCustomName("Debiloid");
+                    armorStand.setCustomNameVisible(true);
                 }
             }
             e.setCancelled(true);
