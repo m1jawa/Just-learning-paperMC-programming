@@ -46,6 +46,8 @@ public class InventoryClickListener implements Listener {
 
                     armorStand.setCustomName("Debiloid");
                     armorStand.setCustomNameVisible(true);
+
+                    armorStand.setRotation(player.getLocation().getYaw() + 180, armorStand.getYaw());
                 }
             }
             e.setCancelled(true);
