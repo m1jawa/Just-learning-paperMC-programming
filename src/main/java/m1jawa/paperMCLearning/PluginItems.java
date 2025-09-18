@@ -14,11 +14,13 @@ public class PluginItems {
     public static ItemStack MagicWand;
     public static ItemStack CommonApple;
     public static ItemStack MobSpawn;
+    public static ItemStack MobSpawn2;
 
     public static void init() {
         MagicWand = MagicWand();
         CommonApple = CommonApple();
         MobSpawn = MobSpawn();
+        MobSpawn2 = MobSpawn2();
     }
 
     private static ItemStack MagicWand() {
@@ -54,6 +56,16 @@ public class PluginItems {
         ItemStack item = new ItemStack(Material.BONE);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName("Summon mob");
+
+        item.setItemMeta(meta);
+
+        return item;
+    }
+
+    private static ItemStack MobSpawn2() {
+        ItemStack item = new ItemStack(Material.ROTTEN_FLESH);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName("Summon another mob");
 
         item.setItemMeta(meta);
 

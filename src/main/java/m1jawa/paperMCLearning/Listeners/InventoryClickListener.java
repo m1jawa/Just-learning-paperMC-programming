@@ -9,11 +9,15 @@ import org.bukkit.block.spawner.SpawnerEntry;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.WitherSkeleton;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.Random;
 
 
 public class InventoryClickListener implements Listener {
@@ -48,7 +52,24 @@ public class InventoryClickListener implements Listener {
                     armorStand.setCustomNameVisible(true);
 
                     armorStand.setRotation(player.getLocation().getYaw() + 180, armorStand.getYaw());
+                } else if (clickedItem.isSimilar(PluginItems.MobSpawn2)) {
+                    Random random = new Random();
+                    for (int i = 0; i < 5; i++) {
+                        Location location = player.getLocation();
+
+                        location.add(random.nextFloat(-5,5), 0, random.nextFloat(-5,5));
+
+                        WitherSkeleton entity = (WitherSkeleton) world.spawnEntity(location, EntityType.WITHER_SKELETON);
+                        entity.getEquipment().setHelmet(new ItemStack(Material.LEATHER_HELMET));
+                        entity.getEquipment().setItemInMainHand(new ItemStack(Material.NETHERITE_SWORD));
+                        entity.getEquipment().setItemInOffHand(new ItemStack(Material.TOTEM_OF_UNDYING));
+
+                        entity.setCustomName("Sigma Budanov");
+                        entity.setCustomNameVisible(true);
+                    }
+
                 }
+
             }
             e.setCancelled(true);
         }
